@@ -10,7 +10,7 @@ import { useGetMoviesQuery } from "../../services/TMDB";
 import { MovieList } from "../";
 
 const Movies = () => {
-  const { data, error, isFetching } = useGetMoviesQuery();
+  const { data, isFetching } = useGetMoviesQuery();
 
   if (isFetching) {
     return (
