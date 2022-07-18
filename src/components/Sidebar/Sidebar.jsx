@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import genreIcon from "../../assets/genres";
+import { useSelector, useDispatch } from "react-redux";
+import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
 import {
   Divider,
   List,
@@ -23,6 +25,7 @@ const redLogo =
 const Sidebar = ({ setMobileOpen }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   const categories = [
     { label: "Popular", value: "popular" },
@@ -66,7 +69,10 @@ const Sidebar = ({ setMobileOpen }) => {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
+            <ListItem
+              onClick={() => dispatch(selectGenreOrCategory(value))}
+              button
+            >
               <ListItemIcon>
                 <img
                   src={genreIcon[label.toLowerCase()]}
@@ -91,7 +97,10 @@ const Sidebar = ({ setMobileOpen }) => {
         ) : (
           data.genres.map(({ name, id }) => (
             <Link key={id} className={classes.links} to="/">
-              <ListItem onClick={() => {}} button>
+              <ListItem
+                onClick={() => dispatch(selectGenreOrCategory(id))}
+                button
+              >
                 <ListItemIcon>
                   <img
                     src={genreIcon[name.toLowerCase()]}
