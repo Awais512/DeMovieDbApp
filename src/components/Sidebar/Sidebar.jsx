@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import genreIcon from "../../assets/genres";
 import {
   Divider,
   List,
@@ -27,12 +28,6 @@ const Sidebar = ({ setMobileOpen }) => {
     { label: "Popular", value: "popular" },
     { label: "Top Rated", value: "top_rated" },
     { label: "Upcoming", value: "upcoming" },
-  ];
-  const demoCategory = [
-    { label: "Comedy", value: "comedy" },
-    { label: "Action", value: "action" },
-    { label: "Horror", value: "horror" },
-    { label: "Animation", value: "animation" },
   ];
 
   const { data, isFetching } = useGetGenresQuery();
@@ -72,14 +67,14 @@ const Sidebar = ({ setMobileOpen }) => {
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
             <ListItem onClick={() => {}} button>
-              {/* <ListItemIcon>
+              <ListItemIcon>
                 <img
-                  src={redLogo}
+                  src={genreIcon[label.toLowerCase()]}
                   alt=""
                   className={classes.genreImages}
                   height={30}
                 />
-              </ListItemIcon> */}
+              </ListItemIcon>
               <ListItemText primary={label} />
             </ListItem>
           </Link>
@@ -97,14 +92,14 @@ const Sidebar = ({ setMobileOpen }) => {
           data.genres.map(({ name, id }) => (
             <Link key={id} className={classes.links} to="/">
               <ListItem onClick={() => {}} button>
-                {/* <ListItemIcon>
-                <img
-                  src={redLogo}
-                  alt=""
-                  className={classes.genreImages}
-                  height={30}
-                />
-              </ListItemIcon> */}
+                <ListItemIcon>
+                  <img
+                    src={genreIcon[name.toLowerCase()]}
+                    alt=""
+                    className={classes.genreImages}
+                    height={30}
+                  />
+                </ListItemIcon>
                 <ListItemText primary={name} />
               </ListItem>
             </Link>
