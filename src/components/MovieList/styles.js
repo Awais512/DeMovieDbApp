@@ -1,13 +1,11 @@
-import { makeStyles } from "@mui/styles";
+import { Grid, styled } from '@mui/material';
 
-export default makeStyles((theme) => ({
-  moviesContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    overflow: "auto",
-    [theme.breakpoints.down("sm")]: {
-      justifyContent: "center",
-    },
-  },
+export const MoviesContainer = styled(Grid)(({ theme }) => ({
+	display: 'flex',
+	flexWrap: 'wrap',
+	justifyContent: 'space-between',
+	overflow: 'auto',
+	[theme.breakpoints.down('sm')]: {
+		justifyContent: 'center',
+	},
 }));

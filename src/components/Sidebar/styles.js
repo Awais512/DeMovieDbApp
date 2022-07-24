@@ -1,20 +1,19 @@
-import { makeStyles } from "@mui/styles";
+import { Box, styled } from '@mui/material';
 
-export default makeStyles((theme) => ({
-  imageLink: {
-    display: "flex",
-    justifyContent: "center",
-    padding: "10% 0",
-  },
-  image: {
-    width: "70%",
-  },
-  links: {
-    color: theme.palette.text.primary,
-    textDecoration: "none",
-  },
-  genreImages: {
-    filter: theme.palette.mode === "dark" && "invert(1)",
-    height: "30px",
-  },
+export const LinkContainer = styled(Box)(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'center',
+	padding: '10% 0',
+	'& img': {
+		width: '70%',
+	},
+}));
+
+export const StyledLink = styled(Box)(({ theme }) => ({
+	color: theme.palette.text.primary,
+	textDecoration: 'none',
+}));
+export const GenreImg = styled('img')(({ theme }) => ({
+	filter: theme.palette.mode === 'dark' && 'invert(1)',
+	height: '30px',
 }));

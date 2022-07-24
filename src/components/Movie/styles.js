@@ -1,37 +1,32 @@
-import { makeStyles } from "@mui/styles";
+import { styled, Typography } from '@mui/material';
 
-export default makeStyles((theme) => ({
-  movie: {
-    padding: "10px",
-  },
-  links: {
-    alignItems: "center",
-    fontWeight: "bolder",
-    textDecoration: "none",
-    [theme.breakpoints.up("xs")]: {
-      display: "flex",
-      flexDirection: "column",
-      "&:hover": {
-        cursor: "pointer",
-      },
-    },
-  },
-  image: {
-    borderRadius: "20px",
-    height: "300px",
-    marginBottom: "10px",
-    "&:hover": {
-      transform: "scale(1.05)",
-    },
-  },
-  title: {
-    color: theme.palette.text.primary,
-    textOverflow: "ellipsis",
-    width: "200px",
-    whiteSpace: "nowrap",
-    overflow: "hidden",
-    marginTop: "10px",
-    marginBottom: 0,
-    textAlign: "center",
-  },
+export const Title = styled(Typography)(({ theme }) => ({
+	color: theme.palette.text.primary,
+	textOverflow: 'ellipsis',
+	width: '230px',
+	whiteSpace: 'nowrap',
+	overflow: 'hidden',
+	marginTop: '10px',
+	marginBottom: 0,
+	textAlign: 'center',
+}));
+
+export const Links = styled('div')(({ theme }) => ({
+	alignItems: 'center',
+	fontWeight: 'bolder',
+	cursor: 'pointer',
+	[theme.breakpoints.up('xs')]: {
+		display: 'flex',
+		flexDirection: 'column',
+	},
+}));
+
+export const Img = styled('img')(({ theme }) => ({
+	borderRadius: '5px',
+	transition: 'all 0.25s ease-in-out',
+	height: '300px',
+	marginBottom: 1,
+	'&:hover': {
+		transform: 'scale(1.05)',
+	},
 }));
