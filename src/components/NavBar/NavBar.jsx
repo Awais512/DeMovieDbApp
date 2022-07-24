@@ -19,13 +19,44 @@ import { Link } from "react-router-dom";
 import useStyles from "./styles";
 import Sidebar from "../Sidebar/Sidebar";
 import Search from "../Search/Search";
+import { fetchToken, moviesApi, createSessionId } from "../../utils";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, userSelector } from "../../features/authSlice";
 
 const NavBar = () => {
+  const { isAuth, user } = useSelector(userSelector);
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery("(max-width:600px)");
   const theme = useTheme();
-  const isAuthenticated = false;
+
+  const token = localStorage.getItem("request_token");
+  const sessionIdLS = localStorage.getItem("session_id");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const loginUser = async () => {
+      if (token) {
+        if (sessionIdLS) {
+          const { data: userData } = await moviesApi.get(
+            `/account?session_id=${sessionIdLS}`
+          );
+          dispatch(setUser(userData));
+        } else {
+          const sessionId = await createSessionId();
+          const { data: userData } = await moviesApi.get(
+            `/account?session_id=${sessionId}`
+          );
+          dispatch(setUser(userData));
+        }
+      }
+    };
+    loginUser();
+  }, [token, dispatch, sessionIdLS]);
+
+  console.log(user);
+
   return (
     <>
       <AppBar position="fixed">
@@ -50,20 +81,15 @@ const NavBar = () => {
           </IconButton>
           {!isMobile && <Search />}
           <div>
-            {!isAuthenticated ? (
-              <Button
-                color="inherit"
-                onClick={() => {
-                  console.log("Not Login");
-                }}
-              >
+            {!isAuth ? (
+              <Button color="inherit" onClick={fetchToken}>
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
               <Button
                 color="inherit"
                 component={Link}
-                to={`/profile/:id`}
+                to={`/profile/${user.id}`}
                 className={classes.linkButton}
                 onClick={() => {
                   console.log("Login");
