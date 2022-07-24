@@ -8,7 +8,7 @@ import {
 import { ArrowBack } from "@mui/icons-material";
 import MovieList from "../MovieList/MovieList";
 import { Img } from "./styles";
-// import Pagination from "../Pagination/Pagination";
+import Pagination from "../Pagination/Pagination";
 
 const Actors = () => {
   const { id } = useParams();
@@ -92,11 +92,11 @@ const Actors = () => {
           Movies
         </Typography>
         {movies && <MovieList movies={movies} limit={12} />}
-        {/* <Pagination
+        <Pagination
           currentPage={page}
           setPage={setPage}
           totalPages={movies?.total_pages}
-        /> */}
+        />
       </Box>
     </>
   );
