@@ -27,7 +27,7 @@ export const tmdbApi = createApi({
 
         // ! get Movies by Category
         if (categorieName && typeof categorieName === "string") {
-          return `movie/${categorieName}/?page=${page}&api_key=${tmdbApiKey}`;
+          return `movie/${categorieName}?page=${page}&api_key=${tmdbApiKey}`;
         }
         // ! get Movies by Id
         if (categorieName && typeof categorieName === "number") {
